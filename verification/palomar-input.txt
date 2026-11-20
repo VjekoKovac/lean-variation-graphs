@@ -1,0 +1,10 @@
+PalomarSubmission revision 14aa8d6b3c2f14a8540605e37144560b9a00e7e7
+https://github.com/PalomarRegistry/PalomarSubmission/tree/14aa8d6b3c2f14a8540605e37144560b9a00e7e7
+$ python3 verification/check-palomar-input.py ../PalomarSubmission-14aa8d6b3c2f14a8540605e37144560b9a00e7e7
+formalization.yaml SHA-256: 95e62db8e6904de4837665ea216ea53b94057c6491fa6849e0c7440085dcc9d0
+Palomar metadata and source-provenance fields: PASS
+result origin: source-based
+repository role: substantive-development
+Lean source files checked: 42
+maximum lines per file: 10000
+Palomar Lean source-format requirements: PASS

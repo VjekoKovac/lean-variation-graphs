@@ -1,0 +1,2 @@
+38 connected labeled graphs, 256 real-valued integer inputs per graph
+9728 exact upper-bound checks; equality witnessed on every graph

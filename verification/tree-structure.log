@@ -1,0 +1,6 @@
+$ lake build SharpVariation.TreeStructure
+✔ [2120/2121] Built SharpVariation.PaperTreeLeaves (9.3s)
+✔ [2121/2121] Built SharpVariation.TreeStructure (30s)
+Build completed successfully (2121 jobs).
+$ printf "%s\n" "import SharpVariation.TreeStructure" "#print axioms SharpVariation.PaperTree.tree_isTree" | lake env lean --stdin
+'SharpVariation.PaperTree.tree_isTree' depends on axioms: [propext, Classical.choice, Quot.sound]

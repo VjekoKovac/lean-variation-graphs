@@ -1,0 +1,3 @@
+$ lake env lean verification/FourAxioms.lean
+'SharpVariation.Four.representativeSharp' depends on axioms: [propext, Classical.choice, Quot.sound]
+'SharpVariation.Four.classify' depends on axioms: [propext, Classical.choice, Quot.sound]

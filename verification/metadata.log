@@ -1,0 +1,5 @@
+$ python3 scripts/check-metadata.py
+Project, license declaration, paper version, author lists and all three target names agree.
+Lean toolchain: leanprover/lean4:v4.35.0
+Mathlib revision: 56a005855ea17e0b0958f73ec801ae140b0a1679
+Configured axioms: propext, Classical.choice, Quot.sound

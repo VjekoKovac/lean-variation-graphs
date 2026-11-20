@@ -1,0 +1,22 @@
+#!/usr/bin/bash
+# Inherit a fresh, empty network namespace with loopback down.
+# Preserve Lake's unshare-all flag and every other bubblewrap argument.
+set -eu
+args=()
+found=0
+for arg in "$@"; do
+  if [[ "$arg" = "--" ]]; then break; fi
+  if [[ "$arg" = "--unshare-all" ]]; then
+    found=1
+  fi
+done
+if [[ "$found" != 1 ]]; then
+  exec /usr/bin/bwrap "$@"
+fi
+for arg in "$@"; do
+  args+=("$arg")
+  if [[ "$arg" = "--unshare-all" ]]; then
+    args+=("--share-net")
+  fi
+done
+exec /usr/bin/unshare --user --map-current-user --net --fork /usr/bin/bwrap "${args[@]}"

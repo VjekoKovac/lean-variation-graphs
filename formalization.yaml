@@ -1,0 +1,97 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/mathlib-initiative/formalization.yaml/main/schema/formalization.schema.json
+version: "v0.4"
+project:
+  name: "Sharp variational inequalities on finite graphs"
+  description: |-
+    Let G = (V,E) be a finite connected undirected simple graph. For f : V → ℝ,
+    M_G f(v) is the maximum of the averages of |f| over closed graph-distance
+    balls centered at v, including the ball of radius zero. For real p > 0,
+    Var_p(f) = (∑_{uv∈E} |f(u) − f(v)|^p)^(1/p), counting each edge once.
+
+    Theorem 1. For every integer n ≥ 3, every real p > 0, and every f : V(K_n) → ℝ
+    on the complete graph K_n, Var_p(M_{K_n} f) ≤ (1 − 1/n) Var_p(f).
+    The coefficient is sharp. For each vertex a, the function equal to 1 at a
+    and 0 elsewhere has positive p-variation and attains equality.
+
+    Theorem 2. For every such graph G with exactly four vertices, 3/4 is the
+    least real c ≥ 0 such that Var_1(M_G f) ≤ c Var_1(f) for every f : V → ℝ.
+    Thus the inequality holds with c = 3/4 on each individual graph, and for
+    every 0 ≤ c < 3/4 that same graph admits an f with Var_1(M_G f) > c Var_1(f).
+
+    Theorem 4. For every pair of real numbers p > 0 and C > 0 there exist a
+    finite connected undirected simple graph G = (V,E) and a function f : V → ℝ
+    such that Var_p(M_G f) > C Var_p(f). One can take G to be a finite tree
+    and f the indicator of its root, with Var_p(f) = 1.
+  authors:
+    - "Cristian González-Riquelme"
+    - "Vjekoslav Kovač"
+    - "José Madrid"
+  license: "Apache-2.0"
+  responsible_maintainers: ["Vjekoslav Kovač"]
+classification:
+  arxiv: ["math.CA", "math.CO"]
+  msc2020: ["26A45", "42B25", "39A12", "05C12"]
+sources:
+  - title: "Sharp variational inequalities for the Hardy–Littlewood maximal operator on finite undirected graphs"
+    authors: ["Cristian González-Riquelme", "Vjekoslav Kovač", "José Madrid"]
+    id: "arXiv:2603.12462v1"
+    location: "https://arxiv.org/abs/2603.12462v1"
+    type: "paper"
+    relationship: "formalizes"
+    note: "Original source of Theorems 1, 2 and 4. The numbered five-vertex observation is separate."
+  - title: "Sharp inequalities for maximal operators on finite graphs"
+    authors: ["Cristian González-Riquelme", "José Madrid"]
+    id: "doi:10.1007/s12220-021-00625-0"
+    location: "https://doi.org/10.1007/s12220-021-00625-0"
+    type: "paper"
+    relationship: "background"
+    note: "The convex-exponent complete-graph argument and the deletion approach cited in Section 2 of the original source."
+
+status:
+  scope: >-
+    The Solution supplies proofs of Theorems 1, 2 and 4 in the Challenge. Each
+    theorem has been built with Lean and its transitive axiom dependencies printed.
+    The verification directory records the separate comparison and kernel replays.
+  sorry_count: 0
+  sorry_in_definitions: 0
+  axioms: ["propext", "Classical.choice", "Quot.sound"]
+automation:
+  methods:
+    - method: "agent"
+      models: ["GPT-6"]
+      framework: "OpenAI Codex"
+      tool_setup: "Multiple AI agents wrote Lean proofs and checked source correspondence. Lean 4.35.0 and Mathlib v4.35.0 are pinned."
+  notes: "Prepared at the request of a paper author, with the same three formalization authors specified by the requester."
+fidelity:
+  divergences: >-
+    For Theorem 1, the induction, concentration, uniform Jensen bound and two-term
+    Hölder argument follow Section 2. Explicit bounds on the two original Hölder
+    coefficients establish the source’s scalar inequality on the full real interval.
+    The four-vertex sharp constant is formulated by leastness among admissible
+    nonnegative real constants. The six four-vertex bounds use exact rational
+    certificates on the linear pieces, plus explicit equality witnesses.
+    The unboundedness proof uses the paper’s rooted tree, the root point mass,
+    the two ball-cardinality bounds, and the k^m distinguished edges. Its
+    strict counterexample to each proposed finite bound implies strict inequality
+    for the optimal constant. The five-vertex numerical
+    observation and the path conjecture are outside the requested three theorems.
+review:
+  status: "agent-reviewed"
+  reviewers: ["OpenAI Codex (AI)"]
+  notes: "The statement and proof reviews in this repository are AI reviews. No independent human review or registry decision is recorded."
+alignment:
+  namespace: "SharpVariation"
+  statements:
+    - source: "Theorem 1 (thm:complete)"
+      lean: "SharpVariation.complete"
+      module: "Solution"
+      status: "proved"
+    - source: "Theorem 2 (thm:4vertices)"
+      lean: "SharpVariation.fourVertices"
+      module: "Solution"
+      status: "proved"
+    - source: "Theorem 4 (thm:largeconst)"
+      lean: "SharpVariation.largeConst"
+      module: "Solution"
+      status: "proved"
+acknowledgements: "Lean, Mathlib, and their contributors. The GitHub arrangement was inspired by roos-j/lean-dfr and the Palomar starter project."
